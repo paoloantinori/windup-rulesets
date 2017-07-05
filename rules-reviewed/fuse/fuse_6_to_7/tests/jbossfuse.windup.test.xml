@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<ruletest id="jbossfuse-test" xmlns="http://windup.jboss.org/schema/jboss-ruleset"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://windup.jboss.org/schema/jboss-ruleset http://windup.jboss.org/schema/jboss-ruleset/windup-jboss-ruleset.xsd">
+    <testDataPath>data/fuse/java</testDataPath>
+    <rulePath>../jbossfuse.windup.xml</rulePath>
+    <ruleset>
+        <rules>
+            <rule id="jbossfuse-test-001">
+                <when>
+                    <not>
+                        <hint-exists message="You need to entirely remove references to Fabric8v1 classes" />
+                    </not>
+                </when>
+                <perform>
+                    <fail message="Deprecated removed Fabric API" />
+                </perform>
+            </rule>
+        </rules>
+    </ruleset>    
+</ruletest>

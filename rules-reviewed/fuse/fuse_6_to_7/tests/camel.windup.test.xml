@@ -2,7 +2,7 @@
 <ruletest id="camel-test" xmlns="http://windup.jboss.org/schema/jboss-ruleset"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://windup.jboss.org/schema/jboss-ruleset http://windup.jboss.org/schema/jboss-ruleset/windup-jboss-ruleset.xsd">
-    <testDataPath>data/camel/blueprint</testDataPath>
+    <testDataPath>data/camel/blueprint/fabric_component</testDataPath>
     <rulePath>../camel.windup.xml</rulePath>
     <ruleset>
         <rules>
@@ -18,6 +18,19 @@
                     <fail message="Deprecated Camel Component was not found" />
                 </perform>
             </rule>
+            <rule id="camel-test-002">
+                <when>
+                    <not>
+                        <iterable-filter size="1">
+                            <hint-exists message="Defined Fabric Component" />
+                        </iterable-filter>
+                    </not>
+                </when>
+                <perform>
+                    <fail message="Defined Fabric Component was not found" />
+                </perform>
+            </rule>
+
         </rules>
     </ruleset>    
 </ruletest>

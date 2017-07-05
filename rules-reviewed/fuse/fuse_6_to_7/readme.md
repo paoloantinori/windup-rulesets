@@ -1,3 +1,6 @@
+https://access.redhat.com/articles/3009361
+
+
 # Relevant aspects to check for a migration from JBoss Fuse 6 to JBoss Fuse 7
 - ports
 - cluster usage
