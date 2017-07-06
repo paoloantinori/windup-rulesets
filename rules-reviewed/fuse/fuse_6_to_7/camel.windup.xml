@@ -18,15 +18,13 @@
         <!-- any node using fabric: in its uri attribute -->
         <rule id="camel-001">
             <when>
-                <xmlfile matches="//camel:*/@uri" xpathResultMatch='uri="fabric:.*' in="{*}.xml">
-                    <namespace prefix="camel" uri="http://camel.apache.org/schema/blueprint"/>
-                </xmlfile>
+                <xmlfile matches="//*/@uri" xpathResultMatch='uri="fabric:.*' in="{*}.xml" />
             </when>
             <perform>
                 <hint title="Deprecated Camel Component" effort="1" category-id="mandatory">
                     <message>Using Deprecated Fabric Component</message>
                     <tag>camel</tag>
-                    <tag>blueprint</tag>
+                    <tag>xml</tag>
                     <tag>fabric</tag>
                 </hint>
             </perform>
@@ -37,15 +35,13 @@
         <rule id="camel-002">
             <when>
                 <!--  -->
-                <xmlfile matches="//bp:bean/@class" xpathResultMatch='class="io.fabric8.camel.FabricComponent.*' in="{*}.xml">
-                    <namespace prefix="bp" uri="http://www.osgi.org/xmlns/blueprint/v1.0.0"/>
-                </xmlfile>
+                <xmlfile matches="//*[local-name()='bean']/@class" xpathResultMatch='class="io.fabric8.camel.FabricComponent.*' in="{*}.xml"/>
             </when>
             <perform>
                 <hint title="Defined Fabric Component" effort="1" category-id="mandatory">
                     <message>Defined Fabric Component</message>
                     <tag>camel</tag>
-                    <tag>blueprint</tag>
+                    <tag>xml</tag>
                     <tag>fabric</tag>
                 </hint>
             </perform>
