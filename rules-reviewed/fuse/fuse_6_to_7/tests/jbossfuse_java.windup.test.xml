@@ -16,6 +16,16 @@
                     <fail message="Deprecated removed Fabric API" />
                 </perform>
             </rule>
+            <rule id="jbossfuse-test-002">
+                <when>
+                    <not>
+                        <hint-exists message="CuratorFramework is no longer exposed as an OSGi service" />
+                    </not>
+                </when>
+                <perform>
+                    <fail message="CuratorFramework is no longer exposed as an OSGi service" />
+                </perform>
+            </rule>            
         </rules>
     </ruleset>    
 </ruletest>

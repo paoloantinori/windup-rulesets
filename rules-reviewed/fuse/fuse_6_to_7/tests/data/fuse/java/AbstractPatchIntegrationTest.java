@@ -22,6 +22,7 @@ import io.fabric8.patch.Service;
 import org.jboss.arquillian.test.api.ArquillianResource;
 import org.junit.Before;
 import org.osgi.framework.BundleContext;
+import org.apache.curator.framework.CuratorFramework;
 
 import java.io.File;
 

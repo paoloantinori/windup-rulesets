@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<ruletest id="jbossfuse-test" xmlns="http://windup.jboss.org/schema/jboss-ruleset"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://windup.jboss.org/schema/jboss-ruleset http://windup.jboss.org/schema/jboss-ruleset/windup-jboss-ruleset.xsd">
+    <testDataPath>data/fuse/xml/fabric_api</testDataPath>
+    <rulePath>../jbossfuse.windup.xml</rulePath>
+    <ruleset>
+        <rules>
+            <rule id="jbossfuse-test-001">
+                <when>
+                    <not>
+                        <hint-exists message="XML: Fabric8 v1 classes have been removed" />
+                    </not>
+                </when>
+                <perform>
+                    <fail message="XML: Fabric8 v1 classes have been removed" />
+                </perform>
+            </rule>
+            <rule id="jbossfuse-test-002">
+                <when>
+                    <not>
+                        <hint-exists message="CuratorFramework is no longer exposed as an OSGi service" />
+                    </not>
+                </when>
+                <perform>
+                    <fail message="CuratorFramework is no longer exposed as an OSGi service" />
+                </perform>
+            </rule>
+        </rules>
+    </ruleset>    
+</ruletest>

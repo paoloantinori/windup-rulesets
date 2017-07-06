@@ -17,11 +17,10 @@
 
     <rules>
 
+        <!-- usage of fabric8v1 apis -->
         <rule id="fuse-001">
             <when>
-                <javaclass references="io.fabric8.api.{*}">
-                    <location>IMPORT</location>
-                </javaclass>
+                <javaclass references="io.fabric8.api.{*}"/>
             </when>
             <perform>
                 <hint title="Fabric8 v1 classes have been removed" effort="1">
@@ -30,7 +29,60 @@
                 </hint>
             </perform>
         </rule>
-
-
+        <!-- usage of fabric8v1 apis -->
+        <rule id="fuse-002">
+            <when>
+                <filecontent filename="{*}.{extension}" pattern="{uri}"  />
+            </when>
+            <perform>
+                <hint title="XML: Fabric8 v1 classes have been removed" effort="1">
+                    <message>XML: Fabric8 v1 classes have been removed</message>
+                    <tag>fabric</tag>
+                    <tag>camel</tag>
+                    <tag>java</tag>
+                </hint>
+            </perform>
+            <where param="uri">
+                <matches pattern="io.fabric8.api"/>
+            </where>
+            <where param="extension">
+                <matches pattern="(xml|properties)"/>
+            </where>
+        </rule>
+        <!-- usge of curatorframework exposed as an osgi service -->
+        <!-- <reference id="curator" interface="org.apache.curator.framework.CuratorFramework"/> -->
+        <rule id="fuse-003">
+            <when>
+                <xmlfile matches="//*[local-name()='reference']/@interface" xpathResultMatch='interface="org.apache.curator.framework.CuratorFramework.*' in="{*}.xml"/>
+            </when>
+            <perform>
+                <hint title="CuratorFramework is no longer exposed as an OSGi service" effort="1" category-id="mandatory">
+                    <message>CuratorFramework is no longer exposed as an OSGi service</message>
+                    <tag>xml</tag>
+                    <tag>fabric</tag>
+                </hint>
+            </perform>
+        </rule>
+        <!-- usage of fabric8v1 apis -->
+        <rule id="fuse-004">
+            <when>
+                <javaclass references="org.apache.curator.framework.CuratorFramework"/>
+            </when>
+            <perform>
+                <hint title="CuratorFramework is no longer exposed as an OSGi service" effort="1">
+                    <message>CuratorFramework is no longer exposed as an OSGi service</message>
+                    <tag>fabric</tag>
+                </hint>
+                <classification issue-display-mode="all" title="CuratorFramework reference" category-id="mandatory" effort="1">
+                    <description>
+                      <![CDATA[
+                      JBOss Fuse runtime no longer exposes `org.apache.curator.framework.CuratorFramework` as an OSGi Service.
+                      It's suggested to check if the occurrence matched by this rule is a direct instantiation or it was referring it via an OSGi service reference.
+                      ]]>
+                    </description>
+                    <tag>webservice</tag>
+                </classification>
+            </perform>
+        </rule>
     </rules>
 </ruleset>

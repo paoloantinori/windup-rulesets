@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<ruletest id="camel-test" xmlns="http://windup.jboss.org/schema/jboss-ruleset"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://windup.jboss.org/schema/jboss-ruleset http://windup.jboss.org/schema/jboss-ruleset/windup-jboss-ruleset.xsd">
+    <testDataPath>data/camel/java/fabric_component</testDataPath>
+    <rulePath>../camel.windup.xml</rulePath>
+    <ruleset>
+        <rules>
+            <rule id="camel-test-003">
+                <when>
+                    <not>
+                        <hint-exists message="Fabric8 Camel components have been removed" />
+                    </not>
+                </when>
+                <perform>
+                    <fail message="Fabric8 Camel components have been removed" />
+                </perform>
+            </rule>
+            <rule id="camel-test-004">
+                <when>
+                    <not>
+                        <hint-exists message="Found usage of fabric: Fabric8 Camel components have been removed" />
+                    </not>
+                </when>
+                <perform>
+                    <fail message="Found usage of fabric: Fabric8 Camel components have been removed" />
+                </perform>
+            </rule>
+
+        </rules>
+    </ruleset>    
+</ruletest>
